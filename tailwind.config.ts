@@ -10,15 +10,45 @@ const config: Config = {
         extend: {
             colors: {
                 zomato: {
-                    primary: '#E23744',
-                    secondary: '#F4F4F2',
-                    black: '#1C1C1C',
+                    red: '#E23744',
+                    pink: '#f4f4f2',
+                    black: '#1c1c1c',
                     gray: '#363636',
-                    lightGray: '#9C9C9C',
-                    white: '#FFFFFF',
+                    light: '#f8f8f8',
                 },
-                background: "var(--background)",
-                foreground: "var(--foreground)",
+                border: "hsl(var(--border))",
+                input: "hsl(var(--input))",
+                ring: "hsl(var(--ring))",
+                background: "hsl(var(--background))",
+                foreground: "hsl(var(--foreground))",
+                primary: {
+                    DEFAULT: "#E23744", // Zomato Red
+                    foreground: "hsl(var(--primary-foreground))",
+                },
+                secondary: {
+                    DEFAULT: "hsl(var(--secondary))",
+                    foreground: "hsl(var(--secondary-foreground))",
+                },
+                destructive: {
+                    DEFAULT: "hsl(var(--destructive))",
+                    foreground: "hsl(var(--destructive-foreground))",
+                },
+                muted: {
+                    DEFAULT: "hsl(var(--muted))",
+                    foreground: "hsl(var(--muted-foreground))",
+                },
+                accent: {
+                    DEFAULT: "hsl(var(--accent))",
+                    foreground: "hsl(var(--accent-foreground))",
+                },
+                popover: {
+                    DEFAULT: "hsl(var(--popover))",
+                    foreground: "hsl(var(--popover-foreground))",
+                },
+                card: {
+                    DEFAULT: "hsl(var(--card))",
+                    foreground: "hsl(var(--card-foreground))",
+                },
             },
         },
     },
