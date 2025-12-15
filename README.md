@@ -42,9 +42,6 @@ The central command center for the Zomato Ecosystem. Built with Next.js 14 for s
     npm run dev
     ```
 
-4.  **Access the Dashboard**
-    Open [http://localhost:3000](http://localhost:3000) in your browser.
-
 ## 👨‍💻 Author
 
 **Arsh Verma** - *Full Stack Developer*
