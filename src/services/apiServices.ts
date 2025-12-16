@@ -1,4 +1,4 @@
-import apiClient from '@/lib/apiClient';
+import { apiClient } from '@zomato/api-client';
 
 export const restaurantsService = {
     getRestaurants: (filters = {}) =>
