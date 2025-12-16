@@ -42,6 +42,7 @@
     "react-native-web": "^0.19.10",
     "@zomato/design-tokens": "^1.0.0",
     "@zomato/ui": "^1.0.0",
+    "@zomato/api-client": "*",
     "react": "19.2.1",
     "react-dom": "19.2.1",
     "react-hook-form": "^7.68.0",
