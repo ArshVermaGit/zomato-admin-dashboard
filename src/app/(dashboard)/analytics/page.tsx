@@ -1,57 +1,70 @@
-import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Download, Calendar } from "lucide-react";
-import { OverviewSection } from "@/components/dashboard/analytics/sections/OverviewSection";
-import { OrdersAnalytics } from "@/components/dashboard/analytics/sections/OrdersAnalytics";
+"use client"
+
+import React, { useState } from "react"
+import dynamic from "next/dynamic"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Skeleton } from "@/components/ui/skeleton"
+
+const AnalyticsOverview = dynamic(() => import("@/components/analytics/AnalyticsOverview").then(mod => mod.AnalyticsOverview), {
+    loading: () => <Skeleton className="h-[400px] w-full" />,
+})
+const RevenueAnalytics = dynamic(() => import("@/components/analytics/RevenueAnalytics").then(mod => mod.RevenueAnalytics), {
+    loading: () => <Skeleton className="h-[400px] w-full" />,
+})
+const UserInsights = dynamic(() => import("@/components/analytics/UserInsights").then(mod => mod.UserInsights), {
+    loading: () => <Skeleton className="h-[400px] w-full" />,
+})
+const PerformanceMetrics = dynamic(() => import("@/components/analytics/PerformanceMetrics").then(mod => mod.PerformanceMetrics), {
+    loading: () => <Skeleton className="h-[400px] w-full" />,
+})
+const ReportsBuilder = dynamic(() => import("@/components/analytics/ReportsBuilder").then(mod => mod.ReportsBuilder), {
+    loading: () => <Skeleton className="h-[200px] w-full" />,
+})
+const ScheduledReports = dynamic(() => import("@/components/analytics/ScheduledReports").then(mod => mod.ScheduledReports), {
+    loading: () => <Skeleton className="h-[200px] w-full" />,
+})
 
 export default function AnalyticsPage() {
-    return (
-        <div className="space-y-6">
-            <div className="flex items-center justify-between">
-                <div>
-                    <h2 className="text-3xl font-bold tracking-tight">Analytics Dashboard</h2>
-                    <p className="text-muted-foreground">Comprehensive insights into platform performance.</p>
-                </div>
-                <div className="flex items-center gap-2">
-                    <Button variant="outline">
-                        <Calendar className="mr-2 h-4 w-4" />
-                        Last 7 Days
-                    </Button>
-                    <Button>
-                        <Download className="mr-2 h-4 w-4" />
-                        Export Report
-                    </Button>
-                </div>
-            </div>
+    const [dateRange, setDateRange] = useState<{ from?: Date; to?: Date }>({
+        from: new Date(new Date().setDate(new Date().getDate() - 30)),
+        to: new Date(),
+    })
 
+    return (
+        <div className="flex-1 space-y-4 p-8 pt-6">
+            <div className="flex items-center justify-between space-y-2">
+                <h2 className="text-3xl font-bold tracking-tight">Analytics</h2>
+            </div>
             <Tabs defaultValue="overview" className="space-y-4">
                 <TabsList>
                     <TabsTrigger value="overview">Overview</TabsTrigger>
-                    <TabsTrigger value="orders">Orders</TabsTrigger>
                     <TabsTrigger value="revenue">Revenue</TabsTrigger>
-                    <TabsTrigger value="customers">Customers</TabsTrigger>
+                    <TabsTrigger value="users">User Insights</TabsTrigger>
+                    <TabsTrigger value="performance">Performance</TabsTrigger>
+                    <TabsTrigger value="reports">Reports</TabsTrigger>
                 </TabsList>
-
                 <TabsContent value="overview" className="space-y-4">
-                    <OverviewSection />
+                    <AnalyticsOverview
+                        dateRange={dateRange}
+                        onDateRangeChange={setDateRange}
+                    />
                 </TabsContent>
-
-                <TabsContent value="orders" className="space-y-4">
-                    <OrdersAnalytics />
+                <TabsContent value="revenue" className="space-y-4">
+                    <RevenueAnalytics />
                 </TabsContent>
-
-                <TabsContent value="revenue">
-                    <div className="flex items-center justify-center p-12 text-muted-foreground border border-dashed rounded-lg">
-                        Revenue Analytics Module (Coming Soon)
-                    </div>
+                <TabsContent value="users" className="space-y-4">
+                    <UserInsights />
                 </TabsContent>
-
-                <TabsContent value="customers">
-                    <div className="flex items-center justify-center p-12 text-muted-foreground border border-dashed rounded-lg">
-                        Customer Analytics Module (Coming Soon)
+                <TabsContent value="performance" className="space-y-4">
+                    <PerformanceMetrics />
+                </TabsContent>
+                <TabsContent value="reports" className="space-y-4">
+                    <div className="grid gap-4">
+                        <ReportsBuilder />
+                        <ScheduledReports />
                     </div>
                 </TabsContent>
             </Tabs>
         </div>
-    );
+    )
 }
