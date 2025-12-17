@@ -1,10 +1,13 @@
-import { PaymentMetrics } from "@/components/dashboard/payments/PaymentMetrics";
+'use client';
+
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowRight, Download, FileText } from "lucide-react";
-import Link from "next/link";
-import { Separator } from "@/components/ui/separator";
+import { Download } from "lucide-react";
+import { PaymentsOverview } from "@/components/payments/PaymentsOverview";
+import { TransactionsTable } from "@/components/payments/TransactionsTable";
+import { PayoutsManager } from "@/components/payments/PayoutsManager";
+import { RefundModal } from "@/components/payments/RefundModal";
+import { FinancialCharts } from "@/components/payments/FinancialCharts";
 
 export default function PaymentsPage() {
     return (
@@ -22,70 +25,48 @@ export default function PaymentsPage() {
                 </div>
             </div>
 
-            <PaymentMetrics />
+            <PaymentsOverview />
 
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-                <Card className="col-span-4">
-                    <CardHeader>
-                        <CardTitle>Quick Links</CardTitle>
-                        <CardDescription>Manage specific financial areas</CardDescription>
-                    </CardHeader>
-                    <CardContent className="grid gap-4 md:grid-cols-2">
-                        <div className="p-4 border rounded-lg hover:bg-muted/50 transition-colors">
-                            <h3 className="font-semibold mb-2 flex items-center">
-                                Transactions <ArrowRight className="ml-auto h-4 w-4" />
-                            </h3>
-                            <p className="text-sm text-muted-foreground mb-4">View and filter all incoming transaction logs.</p>
-                            <Link href="/payments/transactions" className="text-primary text-sm font-medium hover:underline">Go to Transactions</Link>
+            <Tabs defaultValue="overview" className="space-y-4">
+                <TabsList>
+                    <TabsTrigger value="overview">Overview & Analytics</TabsTrigger>
+                    <TabsTrigger value="transactions">Transactions</TabsTrigger>
+                    <TabsTrigger value="payouts">Payouts</TabsTrigger>
+                    <TabsTrigger value="refunds">Refunds</TabsTrigger>
+                </TabsList>
+
+                <TabsContent value="overview" className="space-y-6">
+                    <FinancialCharts />
+                    <div className="bg-white p-6 rounded-lg border border-gray-200">
+                        <h3 className="font-semibold text-gray-900 mb-4">Recent Transactions</h3>
+                        <TransactionsTable />
+                    </div>
+                </TabsContent>
+
+                <TabsContent value="transactions">
+                    <div className="bg-white p-6 rounded-lg border border-gray-200">
+                        <TransactionsTable />
+                    </div>
+                </TabsContent>
+
+                <TabsContent value="payouts">
+                    <PayoutsManager />
+                </TabsContent>
+
+                <TabsContent value="refunds" className="space-y-6">
+                    <div className="flex justify-between items-center bg-red-50 p-4 rounded-lg border border-red-100">
+                        <div>
+                            <h3 className="text-red-900 font-semibold">Manual Refund Processing</h3>
+                            <p className="text-red-700 text-sm">Use this for special cases or support escalations only.</p>
                         </div>
-                        <div className="p-4 border rounded-lg hover:bg-muted/50 transition-colors">
-                            <h3 className="font-semibold mb-2 flex items-center">
-                                Payouts <ArrowRight className="ml-auto h-4 w-4" />
-                            </h3>
-                            <p className="text-sm text-muted-foreground mb-4">Manage payouts for restaurants and delivery partners.</p>
-                            <Link href="/payments/payouts" className="text-primary text-sm font-medium hover:underline">Go to Payouts</Link>
-                        </div>
-                        <div className="p-4 border rounded-lg hover:bg-muted/50 transition-colors">
-                            <h3 className="font-semibold mb-2 flex items-center">
-                                Refunds <ArrowRight className="ml-auto h-4 w-4" />
-                            </h3>
-                            <p className="text-sm text-muted-foreground mb-4">Process and approve pending refund requests.</p>
-                            <Link href="/payments/refunds" className="text-primary text-sm font-medium hover:underline">Go to Refunds</Link>
-                        </div>
-                        <div className="p-4 border rounded-lg hover:bg-muted/50 transition-colors">
-                            <h3 className="font-semibold mb-2 flex items-center">
-                                Commission Settings <ArrowRight className="ml-auto h-4 w-4" />
-                            </h3>
-                            <p className="text-sm text-muted-foreground mb-4">Adjust default commission rates and fees.</p>
-                            <Link href="/settings" className="text-primary text-sm font-medium hover:underline">Go to Settings</Link>
-                        </div>
-                    </CardContent>
-                </Card>
-                <Card className="col-span-3">
-                    <CardHeader>
-                        <CardTitle>Recent Activity</CardTitle>
-                        <CardDescription>Latest financial events</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                        <div className="space-y-4">
-                            {[1, 2, 3, 4, 5].map((i) => (
-                                <div key={i} className="flex items-center">
-                                    <div className="h-9 w-9 rounded-full bg-primary/10 flex items-center justify-center">
-                                        <FileText className="h-4 w-4 text-primary" />
-                                    </div>
-                                    <div className="ml-4 space-y-1">
-                                        <p className="text-sm font-medium leading-none">Payout Processed</p>
-                                        <p className="text-xs text-muted-foreground">
-                                            Rolex Restaurant - ₹45,000
-                                        </p>
-                                    </div>
-                                    <div className="ml-auto font-medium text-sm text-muted-foreground">2h ago</div>
-                                </div>
-                            ))}
-                        </div>
-                    </CardContent>
-                </Card>
-            </div>
+                        <RefundModal />
+                    </div>
+                    <div className="bg-white p-6 rounded-lg border border-gray-200">
+                        <h3 className="font-semibold text-gray-900 mb-4">Refund History</h3>
+                        <TransactionsTable />
+                    </div>
+                </TabsContent>
+            </Tabs>
         </div>
     );
 }
