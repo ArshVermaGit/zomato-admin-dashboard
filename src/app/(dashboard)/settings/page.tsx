@@ -1,53 +1,43 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { GeneralSettings } from "@/components/dashboard/settings/GeneralSettings";
-import { AdminUsersSettings } from "@/components/dashboard/settings/AdminUsersSettings";
-import { SystemLogsSettings } from "@/components/dashboard/settings/SystemLogsSettings";
+"use client"
+
+import React from "react"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { GeneralSettings } from "@/components/settings/GeneralSettings"
+import { RolesPermissions } from "@/components/settings/RolesPermissions"
+import { NotificationSettings } from "@/components/settings/NotificationSettings"
+import { IntegrationSettings } from "@/components/settings/IntegrationSettings"
+import { SystemLogs } from "@/components/settings/SystemLogs"
 
 export default function SettingsPage() {
     return (
-        <div className="space-y-6">
-            <div>
+        <div className="flex-1 space-y-4 p-8 pt-6">
+            <div className="flex items-center justify-between space-y-2">
                 <h2 className="text-3xl font-bold tracking-tight">Settings</h2>
-                <p className="text-muted-foreground">Manage your platform preferences.</p>
             </div>
-
             <Tabs defaultValue="general" className="space-y-4">
-                <TabsList className="bg-white">
+                <TabsList>
                     <TabsTrigger value="general">General</TabsTrigger>
-                    <TabsTrigger value="platform">Platform</TabsTrigger>
-                    <TabsTrigger value="payment">Payment</TabsTrigger>
+                    <TabsTrigger value="roles">Roles & Permissions</TabsTrigger>
                     <TabsTrigger value="notifications">Notifications</TabsTrigger>
-                    <TabsTrigger value="security">Security</TabsTrigger>
-                    <TabsTrigger value="admins">Admin Users</TabsTrigger>
+                    <TabsTrigger value="integrations">Integrations</TabsTrigger>
                     <TabsTrigger value="logs">System Logs</TabsTrigger>
                 </TabsList>
-
-                <TabsContent value="general">
+                <TabsContent value="general" className="space-y-4">
                     <GeneralSettings />
                 </TabsContent>
-
-                <TabsContent value="admins">
-                    <AdminUsersSettings />
+                <TabsContent value="roles" className="space-y-4">
+                    <RolesPermissions />
                 </TabsContent>
-
-                <TabsContent value="logs">
-                    <SystemLogsSettings />
+                <TabsContent value="notifications" className="space-y-4">
+                    <NotificationSettings />
                 </TabsContent>
-
-                {/* Placeholders for other sections */}
-                <TabsContent value="platform">
-                    <div className="p-12 text-center text-muted-foreground border border-dashed rounded-lg bg-white">Platform Settings Module</div>
+                <TabsContent value="integrations" className="space-y-4">
+                    <IntegrationSettings />
                 </TabsContent>
-                <TabsContent value="payment">
-                    <div className="p-12 text-center text-muted-foreground border border-dashed rounded-lg bg-white">Payment Settings Module</div>
-                </TabsContent>
-                <TabsContent value="notifications">
-                    <div className="p-12 text-center text-muted-foreground border border-dashed rounded-lg bg-white">Notification Settings Module</div>
-                </TabsContent>
-                <TabsContent value="security">
-                    <div className="p-12 text-center text-muted-foreground border border-dashed rounded-lg bg-white">Security Settings Module</div>
+                <TabsContent value="logs" className="space-y-4">
+                    <SystemLogs />
                 </TabsContent>
             </Tabs>
         </div>
-    );
+    )
 }
