@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Search, Filter, Download, Trash2, Map, LayoutList } from "lucide-react";
 import { OrdersTable } from '@/components/orders/OrdersTable';
 import { OrdersFilterSidebar } from '@/components/orders/OrdersFilterSidebar';
-import { OrdersDetailModal } from '@/components/orders/OrderDetailModal';
+import { OrderDetailModal } from '@/components/orders/OrderDetailModal';
 import { OrdersService, Order } from '@/services/ordersService';
 import dynamic from 'next/dynamic';
 import { Skeleton } from '@/components/ui/skeleton';
