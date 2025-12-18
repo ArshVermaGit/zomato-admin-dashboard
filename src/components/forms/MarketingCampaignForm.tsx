@@ -31,16 +31,12 @@ const formSchema = z.object({
     campaignName: z.string().min(2, {
         message: "Campaign name must be at least 2 characters.",
     }),
-    type: z.string({
-        required_error: "Please select a campaign type.",
-    }),
-    audience: z.string({
-        required_error: "Please select a target audience.",
-    }),
+    type: z.string().min(1, "Please select a campaign type."),
+    audience: z.string().min(1, "Please select a target audience."),
     dateRange: z.object({
         from: z.date(),
         to: z.date().optional()
-    }, { required_error: "Please select a date range." }).refine((data) => !!data.from, "Start date is required."),
+    }).refine((data) => !!data.from, "Start date is required."),
     description: z.string().min(10, {
         message: "Description must be at least 10 characters.",
     }),
