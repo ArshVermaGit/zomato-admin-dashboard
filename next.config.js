@@ -1,3 +1,5 @@
+const path = require('path');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
@@ -8,8 +10,32 @@ const nextConfig = {
             },
         ],
     },
+    // Tracing dependencies in a monorepo
+    outputFileTracingRoot: path.join(__dirname, '../../'),
+
     transpilePackages: ['@zomato/ui', '@zomato/design-tokens', 'react-native-reanimated', 'react-native', 'expo-linear-gradient'],
+
+    experimental: {
+        // Turbopack configuration
+        turbo: {
+            resolveAlias: {
+                'react-native': 'react-native-web',
+            },
+            resolveExtensions: [
+                '.web.js',
+                '.web.jsx',
+                '.web.ts',
+                '.web.tsx',
+                '.js',
+                '.jsx',
+                '.ts',
+                '.tsx',
+            ],
+        },
+    },
+
     webpack: (config) => {
+        // Fallback for Webpack mode
         config.resolve.alias = {
             ...(config.resolve.alias || {}),
             'react-native$': 'react-native-web',
@@ -23,14 +49,9 @@ const nextConfig = {
         ];
         return config;
     },
-    // Add rewrites if needed
+
     async rewrites() {
-        return [
-            // {
-            //   source: '/api/:path*',
-            //   destination: 'http://localhost:3000/api/:path*',
-            // },
-        ];
+        return [];
     },
 };
 
