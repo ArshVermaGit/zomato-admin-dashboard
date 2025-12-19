@@ -1,15 +1,8 @@
 'use client';
 
-import { useState, useMemo, useCallback } from 'react';
-import Map, {
-    Marker,
-    Popup,
-    Source,
-    Layer,
-    NavigationControl,
-    FullscreenControl,
-    GeolocateControl
-} from 'react-map-gl';
+import { useState, useMemo } from 'react';
+// @ts-ignore
+import Map, { Marker, Popup, Source, Layer, NavigationControl, FullscreenControl, GeolocateControl } from 'react-map-gl';
 import {
     Bike,
     Package,
