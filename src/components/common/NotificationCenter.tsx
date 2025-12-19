@@ -1,17 +1,15 @@
 "use client"
 
-import * as React from "react"
-import { Bell, Check, Trash } from "lucide-react"
+import { Bell, Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
     DropdownMenu,
     DropdownMenuContent,
-    DropdownMenuItem,
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Badge } from "@/components/ui/badge"
+
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useSocketNotifications, Notification } from "@/hooks/useSocketNotifications"
