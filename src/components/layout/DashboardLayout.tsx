@@ -16,7 +16,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             {/* Main Content */}
             <div className={`flex flex-col flex-1 min-h-screen transition-all duration-300 ease-in-out ${isSidebarOpen ? 'lg:pl-64' : 'lg:pl-0'
                 }`}>
-                <Header onMenuClick={() => setIsSidebarOpen(!isSidebarOpen)} />
+                <Header />
 
                 <main className="flex-1 p-4 lg:p-8 bg-gray-50 overflow-x-hidden">
                     {children}
