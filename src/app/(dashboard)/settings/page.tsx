@@ -1,6 +1,5 @@
 "use client"
 
-import React from "react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { GeneralSettings } from "@/components/settings/GeneralSettings"
 import { RolesPermissions } from "@/components/settings/RolesPermissions"
