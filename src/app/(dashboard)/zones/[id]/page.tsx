@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { ArrowLeft, Edit, MapPin, Clock, TrendingUp, Utensils, Bike, Zap } from "lucide-react";
+import { ArrowLeft, Edit, TrendingUp, Clock, Bike, Zap, MapPin } from "lucide-react";
 import Link from "next/link";
 
 export default function ZoneDetailPage({ params }: { params: { id: string } }) {
