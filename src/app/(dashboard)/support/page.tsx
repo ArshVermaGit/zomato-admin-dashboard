@@ -1,6 +1,5 @@
 "use client"
 
-import React from "react"
 import { TicketsTable } from "@/components/support/TicketsTable"
 import { TicketDetail } from "@/components/support/TicketDetail"
 import { KnowledgeBase } from "@/components/support/KnowledgeBase"
