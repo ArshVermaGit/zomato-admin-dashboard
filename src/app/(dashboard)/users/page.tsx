@@ -4,9 +4,7 @@ import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { User, Bike, Store, Download, MoreHorizontal } from "lucide-react";
-import { mockCustomers, mockDeliveryPartners, mockRestaurantPartners } from '@/lib/mock-data';
-// import { UsersTable } from '@/components/users/UsersTable'; // Deprecated
-import { UsersFilter } from '@/components/users/UsersFilter';
+import { mockCustomers } from '@/lib/mock-data';
 import { DataTable } from "@/components/ui/data-table";
 import { ColumnDef } from "@tanstack/react-table";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -25,8 +23,16 @@ import { NewUserWizard } from "@/components/users/NewUserWizard";
 import { useToast } from "@/components/ui/use-toast";
 
 
+interface User {
+    id: string;
+    name: string;
+    email: string;
+    phone: string;
+    status: string;
+}
+
 export default function UsersPage() {
-    const [selectedUser, setSelectedUser] = useState<any>(null)
+    const [selectedUser, setSelectedUser] = useState<User | null>(null)
     const [isDetailOpen, setIsDetailOpen] = useState(false)
     const [isBlockConfirmOpen, setIsBlockConfirmOpen] = useState(false)
     const { toast } = useToast()
@@ -42,7 +48,7 @@ export default function UsersPage() {
     }
 
     // Define columns here to access state handlers
-    const customerColumns: ColumnDef<any>[] = [
+    const customerColumns: ColumnDef<User>[] = [
         {
             id: "select",
             header: ({ table }) => (
