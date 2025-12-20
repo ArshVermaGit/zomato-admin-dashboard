@@ -72,7 +72,7 @@ export default function DashboardHome() {
                 <div>
                     <h1 className="text-2xl font-bold text-gray-900">Dashboard Overview</h1>
                     <p className="text-sm text-gray-600 mt-1">
-                        Welcome back! Here's what's happening today.
+                        Welcome back! Here&apos;s what&apos;s happening today.
                     </p>
                 </div>
                 <select className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500">
