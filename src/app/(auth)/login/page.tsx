@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState, FormEvent } from 'react';
 import { motion } from 'framer-motion';
 import { Eye, EyeOff, Lock, Mail, Shield } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -14,7 +14,10 @@ export default function AdminLoginPage() {
     const [loading, setLoading] = useState(false);
     const [show2FA, setShow2FA] = useState(false);
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const MDiv = motion.div as any;
+
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         setLoading(true);
         // Simulate API call
@@ -36,8 +39,7 @@ export default function AdminLoginPage() {
             {/* Background Pattern */}
             <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
 
-            {/* @ts-ignore */}
-            <motion.div
+            <MDiv
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
@@ -153,7 +155,7 @@ export default function AdminLoginPage() {
                 <p className="text-center text-sm text-gray-600 mt-6">
                     © 2024 Zomato. All rights reserved.
                 </p>
-            </motion.div>
+            </MDiv>
 
             <TwoFactorAuthModal
                 isOpen={show2FA}
