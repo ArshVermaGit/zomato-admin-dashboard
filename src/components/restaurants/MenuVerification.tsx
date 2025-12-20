@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Check, X, AlertCircle } from 'lucide-react';
+import { Check, X } from 'lucide-react';
 
 export function MenuVerification() {
     const [pendingItems, setPendingItems] = useState([
@@ -11,7 +11,7 @@ export function MenuVerification() {
         { id: 2, name: 'Paneer Tikka', price: '₹220', category: 'Starters', description: 'Cottage cheese cubes marinated in spices', status: 'Pending Review' },
     ]);
 
-    const handleAction = (id: number, action: 'approve' | 'reject') => {
+    const handleAction = (id: number, _action: 'approve' | 'reject') => {
         // Mock API call
         setPendingItems(prev => prev.filter(item => item.id !== id));
         // Show toaster

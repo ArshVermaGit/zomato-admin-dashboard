@@ -1,12 +1,9 @@
 "use client"
 
-import { useEffect, useState } from 'react'
-import { io, Socket } from 'socket.io-client'
+import { useEffect, useState, useMemo } from 'react'
+import { Socket } from 'socket.io-client'
 import { toast } from '@/components/ui/use-toast'
 import { SoundManager } from '@/lib/SoundManager'
-
-// Mock socket URL - in production this would come from env
-const SOCKET_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'
 
 export type NotificationType = 'order' | 'system' | 'alert'
 
@@ -32,7 +29,7 @@ const notifyListeners = () => {
 export const useSocketNotifications = () => {
     const [socket, setSocket] = useState<Socket | null>(null)
     const [notifications, setNotifications] = useState<Notification[]>(globalNotifications)
-    const [unreadCount, setUnreadCount] = useState(0)
+
 
     // Subscribe to global store updates
     useEffect(() => {
@@ -42,10 +39,10 @@ export const useSocketNotifications = () => {
         }
     }, [])
 
-    // Update unread count when notifications change
-    useEffect(() => {
-        setUnreadCount(notifications.filter((n) => !n.read).length)
-    }, [notifications])
+    // Compute unread count
+    const unreadCount = useMemo(() =>
+        notifications.filter((n) => !n.read).length,
+        [notifications])
 
     useEffect(() => {
         // Only connect on client side
@@ -54,8 +51,8 @@ export const useSocketNotifications = () => {
         // In a real implementation we would connect to the actual backend
         // For this MVP demo, we'll simulate events since we might not have a running backend socket server
         const mockSocket = {
-            on: (event: string, callback: any) => { },
-            off: (event: string) => { },
+            on: (_event: string, _callback: (data: unknown) => void) => { },
+            off: (_event: string) => { },
             disconnect: () => { },
         } as unknown as Socket
 
@@ -115,9 +112,12 @@ export const useSocketNotifications = () => {
         // Also trigger one immediately on mount for feedback
         // setTimeout(simulateEvent, 2000)
 
-        setSocket(mockSocket)
+        const socketTimeout = setTimeout(() => {
+            setSocket(mockSocket)
+        }, 0)
 
         return () => {
+            clearTimeout(socketTimeout)
             clearInterval(interval)
             if (mockSocket) mockSocket.disconnect()
         }

@@ -21,20 +21,31 @@ import {
     DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 
+interface User {
+    id: string;
+    name: string;
+    email: string;
+    phone: string;
+    status: string;
+    registeredOn: string;
+    totalOrders?: number;
+    verificationStatus?: string;
+}
+
 interface UsersTableProps {
-    data: any[];
+    data: User[];
     type: 'customer' | 'delivery-partner' | 'restaurant-partner';
-    onUserSelect: (user: any) => void;
+    onUserSelect: (user: User) => void;
 }
 
 export function UsersTable({ data, type, onUserSelect }: UsersTableProps) {
-    const getStatusVariant = (status: string) => {
+    const getStatusVariant = (status: string): "default" | "secondary" | "destructive" | "outline" => {
         switch (status) {
-            case 'Active': return 'success'; // Ensure these variants exist in your Badge component or map to 'default'/'secondary' etc
-            case 'Verified': return 'success';
-            case 'Pending': return 'warning';
+            case 'Active': return 'default';
+            case 'Verified': return 'default';
+            case 'Pending': return 'secondary';
             case 'Blocked': return 'destructive';
-            default: return 'secondary';
+            default: return 'outline';
         }
     };
 
@@ -90,7 +101,7 @@ export function UsersTable({ data, type, onUserSelect }: UsersTableProps) {
                                         type === 'delivery-partner' ? 'Delivery Partner' : 'Owner'}
                                 </TableCell>
                                 <TableCell>
-                                    <Badge variant={getStatusVariant(user.status) as any} className="text-[10px] uppercase font-bold tracking-wider">
+                                    <Badge variant={getStatusVariant(user.status)} className="text-[10px] uppercase font-bold tracking-wider">
                                         {user.status}
                                     </Badge>
                                 </TableCell>

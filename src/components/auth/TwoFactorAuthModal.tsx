@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Lock } from 'lucide-react';
 
@@ -25,18 +25,20 @@ export function TwoFactorAuthModal({ isOpen, onClose, onVerify }: TwoFactorAuthM
         }
     };
 
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const MDiv = motion.div as any;
+
     return (
         <AnimatePresence>
             {isOpen && (
-                // @ts-ignore
-                <motion.div
+                <MDiv
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
                 >
-                    {/* @ts-ignore */}
-                    <motion.div
+                    <MDiv
                         initial={{ scale: 0.95, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         exit={{ scale: 0.95, opacity: 0 }}
@@ -87,8 +89,8 @@ export function TwoFactorAuthModal({ isOpen, onClose, onVerify }: TwoFactorAuthM
                         >
                             Cancel
                         </button>
-                    </motion.div>
-                </motion.div>
+                    </MDiv>
+                </MDiv>
             )}
         </AnimatePresence>
     );

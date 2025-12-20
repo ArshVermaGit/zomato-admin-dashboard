@@ -8,7 +8,6 @@ import Link from "next/link";
 export default function ZonesPage() {
     const activeZones = mockZones.filter(z => z.status === "Active");
     const totalOrders = mockZones.reduce((acc, z) => acc + z.ordersToday, 0);
-    const totalRevenue = mockZones.reduce((acc, z) => acc + z.revenueToday, 0);
 
     return (
         <div className="space-y-6">
@@ -49,7 +48,7 @@ export default function ZonesPage() {
                 </Card>
                 <Card>
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Today's Orders</CardTitle>
+                        <CardTitle className="text-sm font-medium">Today&apos;s Orders</CardTitle>
                         <TrendingUp className="h-4 w-4 text-orange-500" />
                     </CardHeader>
                     <CardContent><div className="text-2xl font-bold">{totalOrders.toLocaleString()}</div></CardContent>

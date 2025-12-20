@@ -1,7 +1,6 @@
 "use client"
 
-import * as React from "react"
-import { MoreHorizontal, Clock, ArrowUpCircle, CheckCircle, AlertCircle, AlertTriangle } from "lucide-react"
+import { MoreHorizontal, Clock, AlertTriangle } from "lucide-react"
 import {
     Table,
     TableBody,

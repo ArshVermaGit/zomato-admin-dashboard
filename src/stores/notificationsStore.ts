@@ -18,7 +18,7 @@ interface NotificationsState {
     clearNotifications: () => void;
 }
 
-export const useNotificationsStore = create<NotificationsState>((set, get) => ({
+export const useNotificationsStore = create<NotificationsState>((set, _get) => ({
     notifications: [
         { id: '1', title: 'New Order', message: 'Order ORD-001 placed', type: 'info', read: false, timestamp: new Date() },
         { id: '2', title: 'System Update', message: 'Dashboard updated', type: 'success', read: true, timestamp: new Date(Date.now() - 3600000) },

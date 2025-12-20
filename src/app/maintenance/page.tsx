@@ -14,8 +14,8 @@ export default function MaintenancePage() {
             </h1>
 
             <p className="text-xl text-slate-600 mb-8 max-w-lg text-center leading-relaxed">
-                We're currently performing scheduled maintenance to improve our services.
-                We'll be back online shortly.
+                We&apos;re currently performing scheduled maintenance to improve our services.
+                We&apos;ll be back online shortly.
             </p>
 
             <div className="flex flex-col items-center gap-4">

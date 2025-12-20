@@ -31,7 +31,7 @@ export function RestaurantAnalytics() {
                             <XAxis dataKey="name" fontSize={12} stroke="#888" />
                             <YAxis fontSize={12} stroke="#888" tickFormatter={(value) => `₹${value / 1000}k`} />
                             <Tooltip
-                                formatter={(value: any) => [`₹${value}`, 'Revenue']}
+                                formatter={(value: number) => [`₹${value}`, 'Revenue']}
                                 contentStyle={{ borderRadius: '8px' }}
                             />
                             <Bar dataKey="revenue" fill="#10b981" radius={[4, 4, 0, 0]} />

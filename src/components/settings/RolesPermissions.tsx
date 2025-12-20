@@ -1,7 +1,6 @@
 "use client"
 
-import * as React from "react"
-import { Lock, MoreHorizontal, Shield, Plus } from "lucide-react"
+import { MoreHorizontal, Shield, Plus } from "lucide-react"
 import {
     Table,
     TableBody,
@@ -19,7 +18,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 
 const roles = [

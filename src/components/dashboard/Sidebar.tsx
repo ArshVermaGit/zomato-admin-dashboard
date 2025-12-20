@@ -17,6 +17,7 @@ import {
     LogOut,
     ChevronDown,
     ChevronRight,
+    type LucideIcon,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
@@ -24,7 +25,7 @@ import { Badge } from '@/components/ui/badge';
 interface NavItem {
     name: string;
     href?: string;
-    icon: any;
+    icon: LucideIcon;
     badge?: number;
     children?: { name: string; href: string }[];
 }

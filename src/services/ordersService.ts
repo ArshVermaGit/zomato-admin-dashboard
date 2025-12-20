@@ -5,7 +5,7 @@ export type OrderStatus = 'PENDING' | 'CONFIRMED' | 'PREPARING' | 'READY_FOR_PIC
 export interface OrderFilters {
     status?: OrderStatus;
     search?: string;
-    [key: string]: any;
+    [key: string]: unknown;
 }
 
 export interface Order {
@@ -23,11 +23,26 @@ export interface Order {
     createdAt: string;
 }
 
+interface ApiOrder {
+    id: string;
+    totalAmount: number;
+    status: OrderStatus;
+    createdAt: string;
+    user?: {
+        name?: string;
+        email?: string;
+    };
+    restaurant?: {
+        name?: string;
+    };
+    items?: { name: string; quantity: number; price: number }[];
+}
+
 export const OrdersService = {
     getAllOrders: async (): Promise<Order[]> => {
         try {
             const orders = await ApiOrderService.listOrders({});
-            return orders.map((o: any) => ({
+            return (orders as unknown as ApiOrder[]).map((o) => ({
                 id: o.id,
                 customer: {
                     name: o.user?.name || 'Unknown',
@@ -58,7 +73,7 @@ export const OrdersService = {
     },
 
     // Aliases and additional methods required by usage
-    getOrders: async (filters: OrderFilters) => {
+    getOrders: async (_filters: OrderFilters) => {
         // In a real app, pass filters to listOrders
         return OrdersService.getAllOrders();
     },

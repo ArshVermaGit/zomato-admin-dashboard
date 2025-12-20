@@ -12,7 +12,7 @@ interface OrdersState {
     page: number;
     pageSize: number;
     setOrders: (orders: typeof mockOrders) => void;
-    setFilter: (key: keyof OrdersState['filters'], value: any) => void;
+    setFilter: <K extends keyof OrdersState['filters']>(key: K, value: OrdersState['filters'][K]) => void;
     resetFilters: () => void;
     selectOrder: (orderId: string | null) => void;
     setPage: (page: number) => void;

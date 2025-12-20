@@ -1,6 +1,5 @@
 "use client"
 
-import * as React from "react"
 import { Search, Plus, FileText, Edit2, Trash2, Eye } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"

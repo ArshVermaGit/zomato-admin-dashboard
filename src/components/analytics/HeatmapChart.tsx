@@ -8,7 +8,7 @@ const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 
 // Mock intensity data (0-4 scale)
 const generateHeatmapData = () => {
-    return days.map(day => {
+    return days.map(_day => {
         return hours.map(hour => {
             // Peak hours around lunch (12-14) and dinner (19-21)
             let intensity = 0

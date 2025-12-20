@@ -1,10 +1,8 @@
 "use client"
 
-import * as React from "react"
 import { ArrowDown, ArrowUp, Clock, Bike, Star, AlertTriangle } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 
 const topRestaurants = [

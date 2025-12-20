@@ -1,6 +1,5 @@
 "use client"
 
-import * as React from "react"
 import { ArrowDownRight, ArrowUpRight, DollarSign, ShoppingBag, Users, Activity } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { DateRangePicker } from "@/components/common/DateRangePicker"

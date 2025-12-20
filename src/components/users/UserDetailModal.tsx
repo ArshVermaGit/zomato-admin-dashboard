@@ -1,13 +1,22 @@
 'use client';
 
-import { X, User, Mail, Phone, MapPin, Shield, Ban, Trash2 } from 'lucide-react';
+import { X, Mail, Phone, MapPin, Shield, Ban, Trash2 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { UserActivityTimeline } from './UserActivityTimeline';
 
+interface User {
+    id: string;
+    name: string;
+    email: string;
+    phone: string;
+    status: string;
+    registeredOn: string;
+}
+
 interface UserDetailModalProps {
-    user: any;
+    user: User | null;
     isOpen: boolean;
     onClose: () => void;
 }

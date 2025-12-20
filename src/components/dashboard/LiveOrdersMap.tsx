@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-// @ts-ignore
+// @ts-expect-error - react-map-gl library issues with MapBox types
 import Map, { Marker, Popup, Source, Layer, NavigationControl, FullscreenControl, GeolocateControl } from 'react-map-gl';
 import {
     Bike,
@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { Badge } from "@/components/ui/badge";
+import { FeatureCollection } from 'geojson';
 
 // Types
 interface GeoItem {
@@ -22,6 +23,14 @@ interface GeoItem {
     status?: string;
     name?: string;
     details?: string;
+}
+
+interface MapEvent {
+    viewState: {
+        latitude: number;
+        longitude: number;
+        zoom: number;
+    };
 }
 
 // Mock Data
@@ -122,7 +131,7 @@ export function LiveOrdersMap() {
                 longitude={city.longitude}
                 latitude={city.latitude}
                 anchor="bottom"
-                onClick={(e: any) => {
+                onClick={(e: { originalEvent: MouseEvent }) => {
                     e.originalEvent.stopPropagation();
                     setPopupInfo(city);
                 }}
@@ -141,7 +150,7 @@ export function LiveOrdersMap() {
         <div className="relative w-full h-[600px] rounded-xl overflow-hidden border border-gray-200">
             <Map
                 {...viewState}
-                onMove={(evt: any) => setViewState(evt.viewState)}
+                onMove={(evt: MapEvent) => setViewState(evt.viewState)}
                 style={{ width: '100%', height: '100%' }}
                 mapStyle="mapbox://styles/mapbox/light-v11"
                 mapboxAccessToken={MAPBOX_TOKEN}
@@ -155,8 +164,8 @@ export function LiveOrdersMap() {
 
                 {/* Heatmap */}
                 {showHeatmap && (
-                    <Source type="geojson" data={geoJsonData as any}>
-                        <Layer {...heatmapLayer as any} />
+                    <Source type="geojson" data={geoJsonData as FeatureCollection}>
+                        <Layer {...heatmapLayer as unknown as Parameters<typeof Layer>[0]} />
                     </Source>
                 )}
 

@@ -2,7 +2,7 @@
 
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, BarChart, Bar, PieChart, Pie, Cell, Legend } from 'recharts';
 
-export function OverviewChart({ data, dataKey, color = "#E23744" }: { data: any[], dataKey: string, color?: string }) {
+export function OverviewChart({ data, dataKey, color = "#E23744" }: { data: Record<string, unknown>[], dataKey: string, color?: string }) {
     return (
         <ResponsiveContainer width="100%" height={350}>
             <AreaChart data={data}>
@@ -18,7 +18,7 @@ export function OverviewChart({ data, dataKey, color = "#E23744" }: { data: any[
     );
 }
 
-export function SimpleBarChart({ data, dataKey, color = "#E23744" }: { data: any[], dataKey: string, color?: string }) {
+export function SimpleBarChart({ data, dataKey, color = "#E23744" }: { data: Record<string, unknown>[], dataKey: string, color?: string }) {
     return (
         <ResponsiveContainer width="100%" height={350}>
             <BarChart data={data}>
@@ -32,7 +32,7 @@ export function SimpleBarChart({ data, dataKey, color = "#E23744" }: { data: any
     );
 }
 
-export function StatusPieChart({ data }: { data: any[] }) {
+export function StatusPieChart({ data }: { data: { name: string; value: number; color: string }[] }) {
     return (
         <ResponsiveContainer width="100%" height={350}>
             <PieChart>

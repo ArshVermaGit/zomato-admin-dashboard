@@ -1,10 +1,10 @@
 'use client';
 
-import { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 interface WebSocketEvent {
     type: string;
-    data: any;
+    data: Record<string, unknown>;
     timestamp: Date;
 }
 
@@ -30,15 +30,13 @@ export function useWebSocket() {
 
 export function WebSocketProvider({ children }: { children: ReactNode }) {
     const [isConnected, setIsConnected] = useState(false);
-    const [connectionState, setConnectionState] = useState<'connected' | 'disconnected' | 'connecting' | 'error'>('disconnected');
+    const [connectionState, setConnectionState] = useState<'connected' | 'disconnected' | 'connecting' | 'error'>('connecting');
     const [lastEvent, setLastEvent] = useState<WebSocketEvent | null>(null);
     const [pendingOrdersCount, setPendingOrdersCount] = useState(5);
-    const [openTicketsCount, setOpenTicketsCount] = useState(3);
+    const [openTicketsCount, _setOpenTicketsCount] = useState(3);
 
     // Simulate WebSocket connection
     useEffect(() => {
-        setConnectionState('connecting');
-
         const connectTimeout = setTimeout(() => {
             setIsConnected(true);
             setConnectionState('connected');

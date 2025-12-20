@@ -1,7 +1,16 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-export function RestaurantOverview({ restaurant }: { restaurant: any }) {
+interface Restaurant {
+    partnerName: string;
+    email: string;
+    phone: string;
+    activeSince: string;
+    fssai: string;
+    gst: string;
+}
+
+export function RestaurantOverview({ restaurant }: { restaurant: Restaurant }) {
     return (
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             <Card className="col-span-2">

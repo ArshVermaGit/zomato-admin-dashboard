@@ -38,7 +38,7 @@ interface RestaurantsTableProps {
     onAction?: (action: string, id: string) => void;
 }
 
-export function RestaurantsTable({ restaurants, onAction }: RestaurantsTableProps) {
+export function RestaurantsTable({ restaurants, onAction: _onAction }: RestaurantsTableProps) {
     const [selectedIds, setSelectedIds] = useState<string[]>([]);
 
     const toggleSelect = (id: string) => {
@@ -112,7 +112,7 @@ export function RestaurantsTable({ restaurants, onAction }: RestaurantsTableProp
                                 </TableCell>
                                 <TableCell>{res.location}</TableCell>
                                 <TableCell>
-                                    <Badge variant={getStatusVariant(res.status) as any}>{res.status}</Badge>
+                                    <Badge variant={getStatusVariant(res.status) as "default" | "secondary" | "destructive" | "outline"}>{res.status}</Badge>
                                 </TableCell>
                                 <TableCell>{res.rating > 0 ? res.rating : 'N/A'}</TableCell>
                                 <TableCell>₹{res.revenue.toLocaleString()}</TableCell>

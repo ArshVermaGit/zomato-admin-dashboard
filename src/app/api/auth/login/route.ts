@@ -67,11 +67,18 @@ export async function POST(request: Request) {
 
         return NextResponse.json({ user, success: true });
 
-    } catch (error: any) {
-        console.error('Login error:', error.response?.data || error.message);
+    } catch (error: unknown) {
+        if (axios.isAxiosError(error)) {
+            console.error('Login error:', error.response?.data || error.message);
+            return NextResponse.json(
+                { error: error.response?.data?.message || 'Authentication failed' },
+                { status: error.response?.status || 401 }
+            );
+        }
+        console.error('Unexpected login error:', error);
         return NextResponse.json(
-            { error: error.response?.data?.message || 'Authentication failed' },
-            { status: error.response?.status || 401 }
+            { error: 'An unexpected error occurred' },
+            { status: 500 }
         );
     }
 }

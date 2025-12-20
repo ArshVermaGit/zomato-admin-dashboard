@@ -13,7 +13,7 @@ export const restaurantsService = {
     suspendRestaurant: (id: string, reason: string) =>
         apiClient.put(`/admin/restaurants/${id}/suspend`, { reason }),
 
-    updateRestaurant: (id: string, data: any) =>
+    updateRestaurant: (id: string, data: Partial<Record<string, unknown>>) =>
         apiClient.put(`/admin/restaurants/${id}`, data),
 };
 

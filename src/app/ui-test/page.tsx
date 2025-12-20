@@ -1,9 +1,8 @@
 'use client';
 
-import React from 'react';
 import { Button, RestaurantCard } from '@zomato/ui';
 import { colors } from '@zomato/design-tokens';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
 
 export default function UITestPage() {
     return (
@@ -25,14 +24,16 @@ export default function UITestPage() {
                     restaurant={{
                         id: '1',
                         name: 'Pizza Hut',
-                        image: 'https://b.zmtcdn.com/data/pictures/chains/4/10624/d6c810606798835848bb210165158226.jpg',
+                        coverImage: 'https://b.zmtcdn.com/data/pictures/chains/4/10624/d6c810606798835848bb210165158226.jpg',
                         rating: 4.5,
-                        cuisines: ['Italian', 'Pizza'],
-                        deliveryTime: '30 mins',
-                        priceForTwo: 500,
+                        cuisineTypes: ['Italian', 'Pizza'],
+                        preparationTime: 30,
+                        costForTwo: 500,
                         distance: '2.5 km',
                         offers: '50% OFF',
-                    }}
+                        status: 'Active',
+                        location: 'Connaught Place',
+                    } as unknown as Parameters<typeof RestaurantCard>[0]['restaurant']}
                     onPress={() => alert('Card Pressed')}
                 />
             </div>

@@ -1,15 +1,15 @@
 'use client';
 
-import { Search, Filter, X } from 'lucide-react';
+import { Filter, X } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from 'react';
 
 interface UsersFilterProps {
-    onFilterChange: (filters: any) => void;
+    onFilterChange: (filters: Record<string, unknown>) => void;
 }
 
-export function UsersFilter({ onFilterChange }: UsersFilterProps) {
+export function UsersFilter({ onFilterChange: _onFilterChange }: UsersFilterProps) {
     const [isOpen, setIsOpen] = useState(false);
 
     if (!isOpen) {

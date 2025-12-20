@@ -1,6 +1,5 @@
 "use client"
 
-import * as React from "react"
 import { Bold, Italic, List, Link as LinkIcon, Image as ImageIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"

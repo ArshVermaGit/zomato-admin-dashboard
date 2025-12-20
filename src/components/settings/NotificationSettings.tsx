@@ -1,6 +1,5 @@
 "use client"
 
-import * as React from "react"
 import { Mail, MessageSquare, Bell, Edit2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"

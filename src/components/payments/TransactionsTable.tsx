@@ -84,7 +84,7 @@ export function TransactionsTable() {
                                     {trx.type === 'Refund' || trx.type === 'Payout' ? '-' : '+'}₹{trx.amount}
                                 </TableCell>
                                 <TableCell>
-                                    <Badge variant={getStatusVariant(trx.status) as any}>{trx.status}</Badge>
+                                    <Badge variant={getStatusVariant(trx.status) as "default" | "secondary" | "destructive" | "outline"}>{trx.status}</Badge>
                                 </TableCell>
                             </TableRow>
                         ))}

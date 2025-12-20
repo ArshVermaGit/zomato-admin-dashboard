@@ -4,7 +4,7 @@ export class SoundManager {
     private static getContext(): AudioContext | null {
         if (typeof window === 'undefined') return null;
         if (!this.audioContext) {
-            this.audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+            this.audioContext = new (window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)();
         }
         return this.audioContext;
     }

@@ -120,7 +120,7 @@ export function OrdersTable({
                                 </TableCell>
                                 <TableCell className="font-medium">₹{order.totalAmount}</TableCell>
                                 <TableCell>
-                                    <Badge variant={getStatusColor(order.status) as any} className="uppercase text-[10px] px-2 py-0.5">
+                                    <Badge variant={getStatusColor(order.status) as "default" | "secondary" | "destructive" | "outline"} className="uppercase text-[10px] px-2 py-0.5">
                                         {order.status}
                                     </Badge>
                                 </TableCell>
