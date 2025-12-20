@@ -19,7 +19,6 @@ const LiveOrdersMap = dynamic(() => import('@/components/dashboard/LiveOrdersMap
 export default function OrdersPage() {
     const [searchTerm, setSearchTerm] = useState('');
     const [orders, setOrders] = useState<Order[]>([]);
-    const [loading, setLoading] = useState(true);
     const [selectedOrderIds, setSelectedOrderIds] = useState<string[]>([]);
     const [filterOpen, setFilterOpen] = useState(false);
     const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
@@ -33,8 +32,6 @@ export default function OrdersPage() {
                 setOrders(data);
             } catch (error) {
                 console.error('Error fetching orders:', error);
-            } finally {
-                setLoading(false);
             }
         };
 
