@@ -13,26 +13,11 @@ const nextConfig = {
     // Tracing dependencies in a monorepo
     outputFileTracingRoot: path.join(__dirname, '../../'),
 
-    transpilePackages: ['@zomato/ui', '@zomato/design-tokens', 'react-native-reanimated', 'react-native', 'expo-linear-gradient'],
+    transpilePackages: ['@zomato/ui', '@zomato/api-client', '@zomato/design-tokens', 'react-map-gl', 'mapbox-gl', 'react-native-reanimated', 'react-native', 'expo-linear-gradient'],
 
-    experimental: {
-        // Turbopack configuration
-        turbo: {
-            resolveAlias: {
-                'react-native': 'react-native-web',
-            },
-            resolveExtensions: [
-                '.web.js',
-                '.web.jsx',
-                '.web.ts',
-                '.web.tsx',
-                '.js',
-                '.jsx',
-                '.ts',
-                '.tsx',
-            ],
-        },
-    },
+    experimental: {},
+
+    turbopack: {},
 
     webpack: (config) => {
         // Fallback for Webpack mode
