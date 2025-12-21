@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react';
 // @ts-expect-error - react-map-gl library issues with MapBox types
-import Map, { Marker, Popup, Source, Layer, NavigationControl, FullscreenControl, GeolocateControl } from 'react-map-gl';
+import Map, { Marker, Popup, Source, Layer, NavigationControl, FullscreenControl, GeolocateControl } from 'react-map-gl/mapbox';
 import {
     Bike,
     Package,
